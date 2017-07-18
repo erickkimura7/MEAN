@@ -30,12 +30,20 @@ var routes = require("./routes/routes");
 
 // GET
 app.get('/',routes.index);
-app.get('/menu',isAuth,routes.menu);
+app.get('/menu',passport.authenticate('local', {
+  sucessRedirect: '/',
+  failureRedirect: '/menu'
+}));
 // app.get('/cadastrar',routes.cadastrar);
+// app.get('/contatos',routes.getContatos);
 
 // POST
 // app.post('/cadastrar',enviarCadastro);
-// app.get('/contatos',addContato);
+// app.post('/contatos',addContato);
+/*app.post('/login',passport.authenticate('local', {
+  sucessRedirect: '/',
+  failureRedirect: '/menu'
+}));*/
 
 // PATCH
 // app.patch('/contatos',atualizarContato);
@@ -68,5 +76,5 @@ function isAuth(req,res,next){
 
 
 app.listen(8080, () => {
-	console.log("Server Started");
+  console.log("Server Started");
 });
