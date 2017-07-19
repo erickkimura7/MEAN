@@ -1,0 +1,26 @@
+Telas - GET
+	Index
+	Cadastro
+	Login
+	Menu
+	NovoContato
+	AtualizarCadastro
+
+POST
+	Login
+	Cadastro
+	NovoContato
+
+PATCH
+	AtualizarCadastro
+
+DELETE
+	Menu
+
+
+
+
+
+
+
+

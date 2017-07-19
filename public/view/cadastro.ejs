@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ./partials/head %>
+  
+</head>
+<body class="container">
+
+    <header>
+        <% include ./partials/header %>
+    </header>
+
+    <main>
+
+        <div class="jumbotron">
+            <% include ./partials/title %>
+            <br><br><br>
+            <form id="formExemplo" data-toggle="validator" role="form">
+  <div class="form-group">
+    <label for="textNome" class="control-label">Nome</label>
+    <input id="textNome" class="form-control" placeholder="Digite seu Nome..." type="text" required>
+  </div>
+  
+  <div class="form-group">
+    <label for="inputEmail" class="control-label">Email</label>
+    <input id="inputEmail" class="form-control" placeholder="Digite seu E-mail" type="email" 
+      data-error="Por favor, informe um e-mail correto." required>
+    <div class="help-block with-errors"></div>
+  </div>
+  
+  <div class="form-group">
+    <label for="inputPassword" class="control-label">Senha</label>
+    <input type="password" class="form-control" id="inputPassword" placeholder="Digite sua Senha..."  
+      data-minlength="6" required>
+    <span class="help-block">Mínimo de seis (6) digitos</span>
+  </div>
+  
+  <div class="form-group">
+    <label for="inputConfirm" class="control-label">Confirme a Senha</label>
+    <input type="password" class="form-control" id="inputConfirm" placeholder="Confirme sua Senha..." 
+      data-match="#inputPassword" data-match-error="Atenção! As senhas não estão iguais." required>
+    <div class="help-block with-errors"></div>
+  </div>
+  
+  <div class="form-group">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" data-error="Você deve marcar este campo!" required> Marque este item.
+      </label>
+      <div class="help-block with-errors"></div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </div>
+</form>
+        </div>
+
+
+    </main>
+
+    <footer>
+        <% include ./partials/footer %>
+    </footer>
+<script src="js/validator.min.js"></script>
+<script type="text/javascript" src="./js/cadastro.js"></script>
+</body>
+</html>
