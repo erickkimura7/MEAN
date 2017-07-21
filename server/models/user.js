@@ -2,8 +2,16 @@
 const mongoose = require("mongoose");
 
 var UserSchema = new mongoose.Schema({
-	login:String,
-	password:String
+	login: {
+		type:String,
+		unique:true,
+		require:true
+	},
+	password:{
+		type:String,
+		require:true
+	}
+	
 });
 
 var Users = mongoose.model('User',UserSchema);

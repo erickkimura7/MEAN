@@ -1,36 +1,42 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const Users = require("./../models/user");
+const {Users} = require("./../models/user");
+const bcrypt= require("bcryptjs");
 
 
 // configure passport
-passport.use(new LocalStrategy(
+passport.use(new LocalStrategy({
+		usernameField : "login",
+		passwordField : "password"
+	},
 	function(login,password , callback){
-		Users.find().then((err,result) => {
-			console.log(result);
-		});
-		console.log("login");
-		Users.findByLogin(login , function(err,user){
-			if(err){
-				console.log("ERoo");
-				return callback(err);
-			}
-			if(!user){
-				console.log("usuario nao encontrado");
-				return callback(null,false);
-			}
-			console.log("User pass : ",user.senha);
-			console.log("Pass : ",password);
-			if(user.senha != password){
-				console.log("senha errada");
-				return callback(null,false);
-			}
-			console.log("foi ",user)
-			return callback(null,user);
+		console.log("verificando usuario");
 
-		});
+		console.log("login : ",login);
+		console.log("Password : ", password);
+		Users.findOne({login}).then((result) => {
+			console.log(result);
+			console.log(result.login);
+			console.log(result.password);
+			if(!validatePass(result.password , password)){
+				console.log("senha invalida");
+				callback(null, false , {message: "senha invalida"});
+			}		
+			console.log("usuario valido");
+			callback(null,result);
+		}).catch((e) => {
+			console.log(e);
+			console.log("usuario invalido");
+			callback(null, false , {message: "usuario invalido"});
+		})
+
 	}
 ));
+
+// Validate passwrod
+function validatePass(senha , hash){
+	return bcrypt.compareSync(hash,senha);
+};
 
 passport.serializeUser(function(user, cb) {
 	console.log("serialize");

@@ -35,17 +35,16 @@ app.get('/',routes.index);
 app.get('/login',routes.login);
 app.get('/cadastro',routes.cadastrar);
 app.get('/novoContato',routes.novoContato);
-app.get('/atualizarCadastro',routes.atualizarCadastro);
-app.get("/logout", isAuth,routes.logout)
+//app.get('/atualizarCadastro',routes.atualizarCadastro);
+//app.get("/logout", isAuth,routes.logout)
 
 
 
 // POST
-// app.post('/cadastrar',enviarCadastro);
+app.post('/cadastro',routes.enviarCadastro);
 // app.post('/contatos',addContato);
-/*app.post('/login',passport.authenticate('local'),(req,res) => {
-  res.redirect('/menu');  
-});*/
+app.post('/login', passport.authenticate('local', { successRedirect: '/',
+                                                    failureRedirect: '/login' }));
 
 
 
