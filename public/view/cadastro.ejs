@@ -12,7 +12,7 @@
 
     <main>
 
-        <div class="jumbotron" ng-app="myApp" ng-controller="myCtrl">
+        <div class="jumbotron" ng-app="myApp" ng-controller="myCtrl" ng-submit="send()">
             <% include ./partials/title %>
             <br><br><br>
             <form>
@@ -20,10 +20,13 @@
 
               Senha: <input type= "text" ng-model="user.senha"><br>
 
-              <button ng-click= >Send</button>
+              <button type="submit" >Send</button>
 
 
             </form>
+
+            <p>{{user.login}}</p>
+            <p>{{user.senha}}</p>
 
         </div>
 
@@ -34,6 +37,28 @@
         <% include ./partials/footer %>
     </footer>
 
-<script type="text/javascript" src="./js/cadastro.js"></script>
+<script type="text/javascript" >
+console.log("loading Script");
+var app = angular.module('myApp', []);
+
+app.controller('myCtrl', function($scope,$http) {
+   $scope.send = function() {
+        var data = {
+            login:$scope.user.login,
+            password:$scope.user.senha
+        };
+
+
+        $http.post('/cadastro',data)
+            .success(function(data,status,headers,config){
+                console.log(data);
+            })
+            .error(function(data,status,headers,config) {
+                console.log(data);
+            });
+
+   }
+});
+</script>
 </body>
 </html>

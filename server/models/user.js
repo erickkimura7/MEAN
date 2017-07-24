@@ -10,7 +10,19 @@ var UserSchema = new mongoose.Schema({
 	password:{
 		type:String,
 		require:true
-	}
+	},
+	contatos: [
+		{
+			nome:String,
+			endereco:String,
+			telefone: {
+				fixo:String,
+				celular:String
+			},
+			email:String,
+			observacoes:String
+		}
+	]
 	
 });
 
