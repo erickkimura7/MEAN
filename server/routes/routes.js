@@ -80,7 +80,14 @@ exports.enviarCadastro = function (req,res) {
 
 
 // DELETE 
-
+exports.deletarContato = function(req,res) {
+	
+	Users.remove({login:"erick"}, (doc) => {
+		console.log(doc);
+	}).catch((err) => {
+		console.log(err);
+	});
+};
 
 
 

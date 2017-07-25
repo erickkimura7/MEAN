@@ -1,4 +1,5 @@
-var mongoose = require("./../server/db/mongoose");
+var mongoose = require("mongoose");
+var m = require("./../server/db/mongoose");
 var {Users} = require("./../server/models/user.js");
 
 
@@ -9,8 +10,8 @@ console.log("Connected to DB");
 
 // criar um usuario
 
-/*
-var data = {
+
+/*var data = {
 	login: "erick",
 	password:"123abc"
 };
@@ -21,16 +22,34 @@ user.save().then((doc) => {
 	console.log(doc);
 }).catch((err) => {
 	console.log(err);
-});
+});*/
 
 
 // adicionar um contato
 
 
-Users.update({login:"erick"} , {
+/*Users.findOne({login:"erick"}).then((doc) => {
+	console.log(doc.contatos);
+	for(x in doc.contatos){
+		
+		if(doc.contatos[x].nome === "Jaoo"){
+			console.log("nome ja existe");
+			return 0;
+		}
+	}
+
+	update();
+
+
+}).catch((e) => {
+	console.log(e);
+});*/
+
+function update (){
+	Users.update({login:"erick"} , {
 	$push: {
 		contatos: {
-			nome:"Jao",
+			nome:"Jaoo",
 			endereco:"OLAOLA",
 			telefone: {
 				fixo:"5421212",
@@ -43,17 +62,29 @@ Users.update({login:"erick"} , {
 	}
 }).then((doc) => {
 	console.log("Updated : ",doc);
+	close();
+}).catch((err) => {
+	console.log(err);
+	close();
+});
+};
+
+
+// remover contatos
+
+Users.update({login:"erick"},{
+	$pull: {contatos: {nome : "Jao"}}
+}).then((doc) => {
+	console.log(doc);
 }).catch((err) => {
 	console.log(err);
 });
 
 
-*/
+// deletar usuario
 
-// remover contatos
 
-/*
-Users.remove({login:"erick"}, (doc) => {
+/*Users.remove({login:"erick"}, (doc) => {
 	console.log(doc);
 }).catch((err) => {
 	console.log(err);
@@ -62,10 +93,18 @@ Users.remove({login:"erick"}, (doc) => {
 
 // pegar contatos
 
-Users.findOne({login:"erick"}).then((doc) => {
+/*Users.findOne({login:"erick"}).then((doc) => {
 	// console.log(doc);
 	console.log(doc.contatos);
 
 }).catch((err) => {
 	console.log(err);
-});
+});*/
+
+function close(){
+
+	console.log("Close connection");
+	mongoose.connection.close();
+};
+
+

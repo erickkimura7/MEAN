@@ -1,6 +1,20 @@
 
 const mongoose = require("mongoose");
 
+var ContatosSchema = new mongoose.Schema({
+	nome: {
+		type:String,
+		unique:true
+	},
+	endereco:String,
+	telefone: {
+		fixo:String,
+		celular:String
+	},
+	email:String,
+	observacoes:String
+});
+
 var UserSchema = new mongoose.Schema({
 	login: {
 		type:String,
@@ -11,18 +25,7 @@ var UserSchema = new mongoose.Schema({
 		type:String,
 		require:true
 	},
-	contatos: [
-		{
-			nome:String,
-			endereco:String,
-			telefone: {
-				fixo:String,
-				celular:String
-			},
-			email:String,
-			observacoes:String
-		}
-	]
+	contatos: [ContatosSchema]
 	
 });
 
