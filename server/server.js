@@ -31,19 +31,24 @@ var routes = require("./routes/routes");
 
 
 // GET
-app.get('/',routes.index);
-app.get('/login',routes.login);
-app.get('/cadastro',routes.cadastrar);
-app.get('/novoContato',routes.novoContato);
-//app.get('/atualizarCadastro',routes.atualizarCadastro);
-//app.get("/logout", isAuth,routes.logout)
+// not auth
+app.get('/',notAuth,routes.index);
+app.get('/login',notAuth,routes.login);
+app.get('/cadastro',notAuth,routes.cadastrar);
+
+// auth
+app.get('/menu',isAuth,routes.menu);
+app.get('/novoContato',isAuth,routes.novoContato);
+app.get('/atualizarCadastro',isAuth,routes.atualizarCadastro);
+app.get("/logout", isAuth,routes.logout);
+app.get("/getContatos",isAuth,routes.getContatos);
 
 
 
 // POST
 app.post('/cadastro',routes.enviarCadastro);
 // app.post('/contatos',addContato);
-app.post('/login', passport.authenticate('local', { successRedirect: '/',
+app.post('/login', passport.authenticate('local', { successRedirect: '/menu',
                                                     failureRedirect: '/login' }));
 
 
@@ -54,14 +59,13 @@ app.post('/login', passport.authenticate('local', { successRedirect: '/',
 
 
 // DELETE
-// app.delete('/contatos',deleteContato);
+app.delete('/contatos',routes.deletarContato);
 
 
 // Page not found
 app.get('*', function(req, res) {
-  var err = new Error();
-  err.status = 404;
-  res.send("Page not Found");
+  
+  res.redirect('/');
 });
 
 
@@ -75,7 +79,7 @@ function isAuth(req,res,next){
         next();
     } else{
 
-        res.redirect("/");
+        res.redirect("/login");
     }
 }
 
@@ -83,3 +87,13 @@ function isAuth(req,res,next){
 app.listen(8080, () => {
   console.log("Server Started");
 });
+
+function notAuth(req,res,next){
+   if(req.isAuthenticated()){
+        res.redirect("/menu");
+        
+    } else{
+        next();
+        
+    }
+}

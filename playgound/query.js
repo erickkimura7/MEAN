@@ -28,11 +28,11 @@ user.save().then((doc) => {
 // adicionar um contato
 
 
-/*Users.findOne({login:"erick"}).then((doc) => {
+Users.findOne({login:"erick"}).then((doc) => {
 	console.log(doc.contatos);
 	for(x in doc.contatos){
 		
-		if(doc.contatos[x].nome === "Jaoo"){
+		if(doc.contatos[x].nome === "Salveeeeee"){
 			console.log("nome ja existe");
 			return 0;
 		}
@@ -43,13 +43,13 @@ user.save().then((doc) => {
 
 }).catch((e) => {
 	console.log(e);
-});*/
+});
 
 function update (){
 	Users.update({login:"erick"} , {
 	$push: {
 		contatos: {
-			nome:"Jaoo",
+			nome:"Salveeeeee",
 			endereco:"OLAOLA",
 			telefone: {
 				fixo:"5421212",
@@ -72,14 +72,14 @@ function update (){
 
 // remover contatos
 
-Users.update({login:"erick"},{
+/*Users.update({login:"erick"},{
 	$pull: {contatos: {nome : "Jao"}}
 }).then((doc) => {
 	console.log(doc);
 }).catch((err) => {
 	console.log(err);
 });
-
+*/
 
 // deletar usuario
 
@@ -100,6 +100,35 @@ Users.update({login:"erick"},{
 }).catch((err) => {
 	console.log(err);
 });*/
+
+// Atualizar dados de um contato
+
+// email
+
+// var atualizar= {
+// 	email:"olaola@gmail.com",
+// 	endereco:"novohaha",
+// 	observacoes:"",
+// 	fixo:"asd",
+// 	celular:"asd",
+// 	nome:"Jaoo"
+// };
+// var contato = "Jaoo";
+
+
+// Users.update({"login":"erick" , "contatos.nome":contato},{
+// 	$set : {"contatos.$.email":atualizar.email,
+// 			"contatos.$.endereco":atualizar.endereco,
+// 			"contatos.$.observacoes":atualizar.observacoes,
+// 			"contatos.$.nome":atualizar.nome,
+// 			"contatos.$.telefone.celular":atualizar.celular,
+// 			"contatos.$.telefone.fixo":atualizar.fixo
+// 			} 
+// }).then((doc) => {
+// 	console.log(doc);
+// }).catch((e) => {
+// 	console.log(e);
+// });
 
 function close(){
 

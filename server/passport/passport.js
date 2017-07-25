@@ -20,14 +20,14 @@ passport.use(new LocalStrategy({
 			console.log(result.password);
 			if(!validatePass(result.password , password)){
 				console.log("senha invalida");
-				callback(null, false , {message: "senha invalida"});
+				return callback(null, false , {message: "senha invalida"});
 			}		
 			console.log("usuario valido");
-			callback(null,result);
+			return callback(null,result);
 		}).catch((e) => {
 			console.log(e);
 			console.log("usuario invalido");
-			callback(null, false , {message: "usuario invalido"});
+			return callback(null, false , {message: "usuario invalido"});
 		})
 
 	}
