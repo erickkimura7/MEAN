@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <% include ./partials/head %>
+    
+    <script type="text/javascript" src='js/menu.js'></script>
+</head>
+
+<body class="container">
+
+    <header>
+        <% include ./partials/header %>
+    </header>
+
+    <main>
+        <div class="jumbotron" ng-app="myApp">
+            <% include ./partials/title %>
+            <h2>This is great</h2>
+            <p>Welcome to templating using EJS</p>
+            <a href="#!ola">Ola</a>
+            <div ng-view></div>
+            <table>
+                <tr ng-repeat="each in contatos.contatos">
+                    <td><a href="">{{each.nome}}</a></td>
+    
+                </tr>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <% include ./partials/footer %>
+    </footer>
+   
+</body>
+</html>
