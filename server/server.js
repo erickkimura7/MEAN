@@ -1,24 +1,27 @@
 const express = require("express");
 const passport = require("./passport/passport");
 const path = require("path");
-const publicPath = path.join(__dirname, '..','..', '/public');
+const publicPath = path.join(__dirname, '..','/views');
 const bodyparser = require("body-parser");
 const mongoose = require("./db/mongoose");
 const {Users} = require("./models/user");
-
+console.log(publicPath);
 
 
 var app = express();
 
 
 // setup mid
+app.set('views',publicPath);
 app.set('view engine', 'ejs');
-app.use(express.static(publicPath));
+// app.use(express.static(publicPath));
 app.use(require('morgan')('combined')); 
 app.use(require('cookie-parser')());
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+
+app.use(express.static(path.join(__dirname, '..', '/public')));
 
 // init passport
 

@@ -1,9 +1,10 @@
 const express = require("express");
 const path = require("path");
 const _ = require("lodash");
-const view = path.join(__dirname, '..','..', '/public',"/view/");
+const publicPath = path.join(__dirname, '..','..','/public','/view');
 const {Users} = require("./../models/user");
 const bcrypt = require("bcryptjs");
+console.log("ola: ",publicPath);
 var app = express();
 
 
@@ -12,20 +13,20 @@ var app = express();
 
 // GET
 exports.index = function (req,res) {
-	console.log(req.user);
-	res.render(view+"index" , noAuth("Home"));
+	console.log("asjd");
+	res.render("index" , noAuth("Home"));
 };
 
 exports.menu = function (req,res) {
-	res.render(view+"menu" ,Auth("Menu"));
+	res.render("menu" ,Auth("Menu"));
 };
 
 exports.cadastrar = function (req,res) {
-	res.render(view+"cadastro", noAuth("Cadastrar"));
+	res.render("cadastro", noAuth("Cadastrar"));
 };
 
 exports.login = function (req,res) {
-	res.render(view+"login" , noAuth("Login"));
+	res.render("login" , noAuth("Login"));
 };
 
 exports.logout = function (req,res) {
@@ -36,7 +37,7 @@ exports.logout = function (req,res) {
 
 
 exports.novoContato = function (req,res) {
-	res.render(view+"novoContato" , {
+	res.render("novoContato" , {
 		title: "Novo Contato",
 		links:[
 		{ title:"Menu",link:"/menu" },
@@ -47,7 +48,7 @@ exports.novoContato = function (req,res) {
 };
 
 exports.atualizarCadastro = function (req,res) {
-	res.render(view+"atualizarCadastro" , {
+	res.render("atualizarCadastro" , {
 		title: "Atualizar Cadastro",
 		links:[
 		{ title:"Menu",link:"/menu" },
@@ -78,7 +79,7 @@ exports.enviarCadastro = function (req,res) {
 		res.redirect("/login");
 	}).catch((err) => {
 		console.log(err);
-		res.render(view+"cadastro", {
+		res.render("cadastro", {
 		title: "Cadastro",
 		links:[
 		{ title:"Home",link:"/" },
