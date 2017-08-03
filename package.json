@@ -24,5 +24,8 @@
     "passport-local": "^1.0.0",
     "request": "^2.81.0",
     "static-favicon": "^2.0.0-alpha"
+  },
+  "engine":{
+    "node":"6.2.2"
   }
 }

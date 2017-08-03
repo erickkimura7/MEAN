@@ -225,7 +225,7 @@ angular.module('myApp').controller('Contatos', ['$scope', '$location', 'AuthServ
 
     // implementar remove contato
     $scope.remove = function(id) {
-      var nome = $scope.contatos[id].nome;
+      var nome = id.nome;
       console.log("Nome: ", nome);
       AuthService.removeContatos(nome, function(x) {
         console.log("Remove : ", x);
@@ -281,63 +281,3 @@ angular.module('myApp').controller('Contatos', ['$scope', '$location', 'AuthServ
   }
 ]);
 
-angular.module('myApp').controller('CompanyCtrl', ['$scope', function($scope) {
-  $scope.companies = [{
-    'name': 'Infosys Technologies',
-    'employees': 125000,
-    'headoffice': 'Bangalore'
-  }, {
-    'name': 'Cognizant Technologies',
-    'employees': 100000,
-    'headoffice': 'Bangalore'
-  }, {
-    'name': 'Wipro',
-    'employees': 115000,
-    'headoffice': 'Bangalore'
-  }, {
-    'name': 'Tata Consultancy Services (TCS)',
-    'employees': 150000,
-    'headoffice': 'Bangalore'
-  }, {
-    'name': 'HCL Technologies',
-    'employees': 90000,
-    'headoffice': 'Noida'
-  }, ];
-  $scope.addRow = function() {
-    $scope.companies.push({
-      'name': $scope.name,
-      'employees': $scope.employees,
-      'headoffice': $scope.headoffice
-    });
-    $scope.name = '';
-    $scope.employees = '';
-    $scope.headoffice = '';
-  };
-  $scope.removeRow = function(name) {
-    var index = -1;
-    var comArr = eval($scope.companies);
-    for (var i = 0; i < comArr.length; i++) {
-      if (comArr[i].name === name) {
-        index = i;
-        break;
-      }
-    }
-    if (index === -1) {
-      alert("Something gone wrong");
-    }
-    $scope.companies.splice(index, 1);
-  };
-  $scope.showEditRow = function(r) {
-    $scope.active = r;
-    $scope.companies.selected = angular.copy(r);
-  };
-  $scope.saveContact = function(idx) {
-    console.log("Saving contact" + idx);
-    $scope.companies[idx] = angular.copy($scope.companies.selected);
-    $scope.reset();
-  };
-  $scope.reset = function() {
-    $scope.companies.selected = {};
-    $scope.active = null;
-  };
-}]);
