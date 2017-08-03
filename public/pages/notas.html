@@ -1,0 +1,51 @@
+<br>
+<br>
+<table class="table" >
+	<tr>
+		<th>Nome
+		</th>
+		<th>Email
+		</th>
+		<th>Endereco
+		</th>
+		<th>Fixo
+		</th>
+		<th>Celular
+		</th>
+		<th>Observacao
+		</th>
+		
+	</tr>
+	<tr ng-repeat-start="each in contatos">
+		<td>{{each.nome}}</td>
+		<td>{{each.email}}</td>
+		<td>{{each.endereco}}</td>
+		<td>{{each.telefone.fixo}}</td>
+		<td>{{each.telefone.celular}}</td>
+		<td>{{each.obs}}</td>
+		<td>
+		<input type="button" value="Remove" class="btn btn-primary" ng-click="remove($index)"/>
+		</td>
+		<td><div class="col-xs-3 text-right"><a href="" class="btn btn-primary" ng-click="showEdit(each)"><span>Edit</span></a></div></td>
+	</tr>
+	<tr ng-repeat-end="" ng-show="active==each" ng-class-odd="'alt'">
+	        <td><input class="form-control input-sm" ng-model="contatos.selected.nome"></td>
+	        <td><input class="form-control input-sm" ng-model="contatos.selected.email"></td>  
+	        <td><input class="form-control input-sm" ng-model="contatos.selected.endereco"></td>
+	        <td><input class="form-control input-sm" ng-model="contatos.selected.telefone.fixo"></td>
+	        <td><input class="form-control input-sm" ng-model="contatos.selected.telefone.celular"></td>
+	        <td><input class="form-control input-sm" ng-model="contatos.selected.obs"></td>
+	        <td><button class="btn btn-default" ng-click="patch($index)">Save</button></div></td>
+	        <td><button class="btn btn-default" ng-click="reset()">Cancel</button></div></td>
+	        
+    </tr>
+    <tr>
+    	<td><input type="text" class="form-control" name="nome" ng-model="novo.nome" /></td>
+    	<td><input type="text" class="form-control" name="email" ng-model="novo.email" /></td>
+    	<td><input type="text" class="form-control" name="endereco" ng-model="novo.endereco" /></td>
+    	<td><input type="text" class="form-control" name="endereco" ng-model="novo.fixo" /></td>
+    	<td><input type="text" class="form-control" name="endereco" ng-model="novo.ceular" /></td>
+    	<td><input type="text" class="form-control" name="endereco" ng-model="novo.obs" /></td>
+    	<td><button class="btn btn-primary" ng-click="addContato()">Add</button></div></td>
+    </tr>
+</table>

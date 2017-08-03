@@ -105,30 +105,30 @@ function update (){
 
 // email
 
-// var atualizar= {
-// 	email:"olaola@gmail.com",
-// 	endereco:"novohaha",
-// 	observacoes:"",
-// 	fixo:"asd",
-// 	celular:"asd",
-// 	nome:"Jaoo"
-// };
-// var contato = "Jaoo";
+var atualizar= {
+	email:"olaola@gmail.com",
+	endereco:"novohaha",
+	observacoes:"",
+	fixo:"asd",
+	celular:"asd",
+	nome:"Jaoo"
+};
+var contato = "Jaoo";
 
 
-// Users.update({"login":"erick" , "contatos.nome":contato},{
-// 	$set : {"contatos.$.email":atualizar.email,
-// 			"contatos.$.endereco":atualizar.endereco,
-// 			"contatos.$.observacoes":atualizar.observacoes,
-// 			"contatos.$.nome":atualizar.nome,
-// 			"contatos.$.telefone.celular":atualizar.celular,
-// 			"contatos.$.telefone.fixo":atualizar.fixo
-// 			} 
-// }).then((doc) => {
-// 	console.log(doc);
-// }).catch((e) => {
-// 	console.log(e);
-// });
+Users.update({"login":"erick" , "contatos.nome":contato},{
+	$set : {"contatos.$.email":atualizar.email,
+			"contatos.$.endereco":atualizar.endereco,
+			"contatos.$.observacoes":atualizar.observacoes,
+			"contatos.$.nome":atualizar.nome,
+			"contatos.$.telefone.celular":atualizar.celular,
+			"contatos.$.telefone.fixo":atualizar.fixo
+			} 
+}).then((doc) => {
+	console.log(doc);
+}).catch((e) => {
+	console.log(e);
+});
 
 function close(){
 

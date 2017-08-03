@@ -1,0 +1,338 @@
+<div class="container">
+    <div class="row content">
+        <div class="col-sm-3 sidenav ">
+            <div class="row linhadomeio">
+                <div class="col-sm-11">
+                    <!--nome do contato-->
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <h4>{{usuario}}'s Contact </h4>
+                        </div>
+                        <div class="col-sm-3">
+
+                            <button class="btn" ng-click="estadonovo()">+</button>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+
+                        <input class="form-control glyphicon" type="text" ng-model="searchString" name="search" placeholder="&#xe003">
+
+
+                    </div>
+                    <br>
+
+
+                    <div class="row">
+                        <div style="width: 100%; height: 100%; overflow-y: scroll;">
+                            <!--<div class="panel panel-default" style="background-color:#ffffff;overflow-y: auto; height:50%;">-->
+
+                            <div class="list-group">
+
+                                <a class="list-group-item" ng-repeat="each in contatos | orderBy:'nome' | searchFor:searchString" ng-click=show(each) ng-class="{'list-group-item-info':  each == atual }">{{each.nome}}</a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-sm-1"></div>
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+        <!--mostrar dados-->
+        <div ng-show="estado=='normal'" class="col-sm-9">
+            <div class="row soAli ">
+                <div class="col-sm-1">
+                    <button class="btn btn-link" ng-click=showEdit(atual)>Edit</button>
+                </div>
+                <div class="col-sm-10">
+
+                </div>
+
+                <div class="col-sm-1">
+                    <button class="btn btn-link" data-toggle="confirmation">Deletar</button>
+                    <button class="btn btn-large btn-primary" data-toggle="confirmation" data-btn-ok-label="Continue" data-btn-ok-icon="glyphicon glyphicon-share-alt" data-btn-ok-class="btn-success" data-btn-cancel-label="Stoooop!" data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+                        data-btn-cancel-class="btn-danger" data-title="Is it ok?" data-content="This might be dangerous">
+  Confirmation
+</button>
+                    <button class="btn btn-default" data-toggle="confirmation">Confirmation</button>
+                   
+                </div>
+
+
+            </div>
+
+            <!--nome-->
+            <div class="row espaco">
+                <div class="col-sm-1">
+                </div>
+
+                <div class="col-sm-6">
+                    <h1>{{atual.nome}}</h1>
+
+                </div>
+            </div>
+
+
+            <!--email-->
+            <div class="row espaco">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-11">
+                    <h5 class="campos">Email</h5>
+                    <t></t>
+                    <p style="display:inline;"> {{atual.email}}</p>
+                </div>
+
+
+            </div>
+
+            <!--Telefone-->
+            <div class="row espaco">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-1">
+                    <h5 style="color:#92929b;">Telefone</h5>
+                </div>
+                <br>
+                <div class="col-sm-10">
+                    <div class="row espaco">
+
+                        <h5 class="campos">Fixo </h5>
+                        <p style="display:inline;">{{atual.telefone.fixo}}</p>
+                    </div>
+                    <div class="row espaco">
+                        <h5 class="campos">Celular </h5>
+                        <p style="display:inline;">{{atual.telefone.celular}}</p>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            <!--endereco-->
+            <div class="row espaco">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-11">
+                    <h5 class="campos">Endereço</h5>
+                    <t></t>
+                    <p style="display:inline;">{{atual.endereco}}</p>
+                </div>
+
+
+            </div>
+
+
+            <!--obs-->
+            <div class="row espaco">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-6">
+                    <h5 class="campos">Observação</h5>
+                    <t></t>
+                    <p style="display:inline;">{{atual.obs}}</p>
+                </div>
+                <div class="col-sm-5">
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+        <!--atualizar dados-->
+        <div ng-show="estado=='edit'" class="col-sm-9">
+            <div class="row soAli ">
+                <button class="btn btn-link" ng-click=patch()>Salvar</button>
+
+                <button class="btn btn-link" ng-click=reset()>Cancelar</button>
+
+            </div>
+            <!--nome-->
+            <div class="row espaco">
+                <div class="col-sm-1">
+                </div>
+
+                <div class="col-sm-9">
+                    <label for="nome">Nome:</label>
+                    <input id="nome" class="form-control input-sm text-area tam" ng-model="contatos.selected.nome">
+
+                </div>
+            </div>
+
+
+            <!--email-->
+            <div class="row espaco">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-9">
+                    <label for="email">Email:</label>
+                    <input id="email" class="form-control input-sm tam " ng-model="contatos.selected.email">
+                </div>
+
+
+            </div>
+
+            <!--Telefone-->
+            <div class="row espaco">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-1">
+                    <h5 style="color:#00000;">Telefone</h5>
+                </div>
+                <br>
+                <div class="col-sm-8">
+                    <div class="row espaco">
+                        <label for="fixo">Fixo:</label>
+                        <input id="fixo" class="form-control input-sm tam" ng-model="contatos.selected.telefone.fixo">
+                    </div>
+                    <div class="row espaco">
+                        <label for="celular">Celular:</label>
+                        <input id="ceular" class="form-control input-sm tam" ng-model="contatos.selected.telefone.celular">
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            <!--endereco-->
+            <div class="row espaco">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-9">
+                    <label for="endereco">Endereco:</label>
+                    <input id="endereco" class="form-control input-sm tam" ng-model="contatos.selected.endereco">
+                </div>
+
+
+            </div>
+
+
+            <!--obs-->
+            <div class="row espaco">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-9">
+                    <label for="obs">Observação</label>
+                    <textarea row="5" id="obs" class="form-control input-sm tam" ng-model="contatos.selected.obs"></textarea>
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+        <!--novo contato-->
+        <div ng-show="estado=='novo'" class="col-sm-9">
+            <form class="form" ng-submit="addContato()" id="formContato">
+                <div class="row soAli ">
+                    <button class="btn btn-link" type="submit" ng-disabled="disabled">Salvar</button>
+
+                    <button class="btn btn-link" ng-click=reset()>Cancelar</button>
+
+                </div>
+                <div class="row alert alert-danger" ng-show="addErr">{{addErr}} </div>
+                <!--nome-->
+                <div class="row espaco">
+                    <div class="col-sm-1">
+                    </div>
+
+                    <div class="col-sm-9">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" class="form-control input-sm text-area tam" ng-model="novo.nome" required>
+
+                    </div>
+                </div>
+
+
+                <!--email-->
+                <div class="row espaco">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-9">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" class="form-control input-sm tam " ng-model="novo.email">
+                    </div>
+
+
+                </div>
+
+                <!--Telefone-->
+                <div class="row espaco">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-1">
+                        <h5 style="color:#00000;">Telefone</h5>
+                    </div>
+                    <br>
+                    <div class="col-sm-8">
+                        <div class="row espaco">
+                            <label for="fixo">Fixo:</label>
+                            <input pattern="[0-9()]*" id="fixo" class="form-control input-sm tam" ng-model="novo.fixo">
+                        </div>
+                        <div class="row espaco">
+                            <label for="celular">Celular:</label>
+                            <input pattern="[0-9()]*" id="ceular" class="form-control input-sm tam" ng-model="novo.celular">
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+                <!--endereco-->
+                <div class="row espaco">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-9">
+                        <label for="endereco">Endereco:</label>
+                        <input type="text" id="endereco" class="form-control input-sm tam" ng-model="novo.endereco">
+                    </div>
+
+
+                </div>
+
+
+                <!--obs-->
+                <div class="row espaco">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-9">
+                        <label for="obs">Observação</label>
+                        <textarea type="text" row="5" id="obs" class="form-control input-sm tam" ng-model="novo.obs"></textarea>
+                    </div>
+
+
+
+                </div>
+
+            </form>
+        </div>
+
+
+
+    </div>
+
+</div>

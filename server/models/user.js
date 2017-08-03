@@ -3,8 +3,7 @@ const mongoose = require("mongoose");
 
 var ContatosSchema = new mongoose.Schema({
 	nome: {
-		type:String,
-		unique:true
+		type:String
 	},
 	endereco:String,
 	telefone: {
@@ -12,14 +11,15 @@ var ContatosSchema = new mongoose.Schema({
 		celular:String
 	},
 	email:String,
-	observacoes:String
+	obs:String
 });
 
 var UserSchema = new mongoose.Schema({
 	login: {
 		type:String,
 		unique:true,
-		require:true
+		require:true,
+		minlength:1
 	},
 	password:{
 		type:String,

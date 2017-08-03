@@ -35,34 +35,56 @@ var routes = require("./routes/routes");
 
 // GET
 // not auth
-app.get('/',notAuth,routes.index);
-app.get('/login',notAuth,routes.login);
-app.get('/cadastro',notAuth,routes.cadastrar);
+app.get('/',routes.index);
 
 // auth
-app.get('/menu',isAuth,routes.menu);
-app.get('/novoContato',isAuth,routes.novoContato);
-app.get('/atualizarCadastro',isAuth,routes.atualizarCadastro);
-app.get("/logout", isAuth,routes.logout);
-app.get("/getContatos",isAuth,routes.getContatos);
+app.get("/logout",routes.logout);
+app.get("/contatos",routes.getContatos);
+app.get('/status',isAuth1);
 
+app.get('/usuario', (req,res) => {
+    console.log("asjdkjasd" ,req.user.login);
+    res.status(200).json({
+        usuario:req.user.login
+    });
+});
 
 
 // POST
+app.post("/contato",routes.enviarContato);
 app.post('/cadastro',routes.enviarCadastro);
 // app.post('/contatos',addContato);
-app.post('/login', passport.authenticate('local', { successRedirect: '/menu',
-                                                    failureRedirect: '/login' }));
+app.post('/login', (req,res,next) => {
+    passport.authenticate('local', function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { 
+        return res.status(200).json({
+            err:info
+            }); 
+        
+    }
+    // req / res held in closure
+    req.logIn(user, function(err) {
+      if (err) { 
+          return next(err); 
+      }
+      return res.status(200).json({
+          status:"Deu certo !"
+      });
+    });
+
+  })(req, res, next);
+});
 
 
 
 // PATCH
-// app.patch('/contatos',atualizarContato);
+app.patch('/contato',routes.atualizarContato);
 
 
 
 // DELETE
-app.delete('/contatos',routes.deletarContato);
+app.post('/delcontato',routes.deletarContato);
 
 
 // Page not found
@@ -72,7 +94,19 @@ app.get('*', function(req, res) {
 });
 
 
+function isAuth1(req,res,next){
+    if(req.isAuthenticated()){
+        //if user is looged in, req.isAuthenticated() will return true 
+        res.status(200).json({
+            status:"ok"
+        });
+    } else{
 
+        res.status(401).json({
+            err:"Erro"
+        });
+    }
+}
 
 
 // Verifica Autenticacao
@@ -82,7 +116,9 @@ function isAuth(req,res,next){
         next();
     } else{
 
-        res.redirect("/login");
+        res.status(401).json({
+            err:"Nao logado"
+        });
     }
 }
 
@@ -91,12 +127,3 @@ app.listen(8080, () => {
   console.log("Server Started");
 });
 
-function notAuth(req,res,next){
-   if(req.isAuthenticated()){
-        res.redirect("/menu");
-        
-    } else{
-        next();
-        
-    }
-}
