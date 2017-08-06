@@ -68,15 +68,15 @@ myApp.run(function ($rootScope, $location, $route, AuthService) {
   $rootScope.$on('$routeChangeStart',
     function (event, next, current) {
       AuthService.getUserStatus(function(){
-          console.log("call");
+        //   console.log("call");
         if(!AuthService.isLoggedIn()){
             $rootScope.logado='nao';
             $rootScope.deslogado='';
-            console.log("deslogado");
+            // console.log("deslogado");
         }else{
             $rootScope.logado='';
             $rootScope.deslogado='nao';
-            console.log("logado");
+            // console.log("logado");
         }
           
         if (next.access.restricted && !AuthService.isLoggedIn()){

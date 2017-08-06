@@ -38,12 +38,12 @@ function getUserStatus(callback) {
       user = false;
       callback();
     }
-    console.log(user);
+    // console.log(user);
   })
   // handle error
   .error(function (data) {
     user = false;
-    console.log(user);
+    // console.log(user);
     callback();
   });
 }
@@ -121,7 +121,7 @@ function getContatos(callback) {
   // handle success
   .success(function (data) {
     if(data.contatos){
-      console.log(data.contatos);
+      // console.log(data.contatos);
       callback(data.contatos);
     } else {
       callback();
@@ -134,12 +134,12 @@ function getContatos(callback) {
 
 }
 function addContato(dados,callback) {
-  console.log("addcontatos");
+  // console.log("addcontatos");
    $http.post('/contato', dados)
   // handle success
   .success(function (data) {
     if(data.status){
-      console.log(data.status);
+      // console.log(data.status);
       callback();
     } else {
       callback(data.err);
@@ -152,17 +152,17 @@ function addContato(dados,callback) {
 
 }
 function removeContatos(variavel,callback) {
-  console.log("removendo : ",variavel);
+  // console.log("removendo : ",variavel);
   var data = {
     "nome":variavel
   };
   
-  console.log(data);
+  // console.log(data);
    $http.post('/delcontato',data)
   // handle success
   .success(function (data) {
     if(data.status){
-      console.log(data.status);
+      // console.log(data.status);
       callback(data.contatos);
     } else {
       callback();

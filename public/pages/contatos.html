@@ -1,15 +1,14 @@
-<div class="container">
+
     <div class="row content">
-        <div class="col-sm-3 sidenav ">
+        <div class="col-sm-3 col-md-3 sidenav ">
             <div class="row linhadomeio">
                 <div class="col-sm-11">
                     <!--nome do contato-->
                     <div class="row">
-                        <div class="col-sm-9">
-                            <h4>{{usuario}}'s Contact </h4>
+                        <div class="col-md-9">
+                            <h5>Contatos de {{usuario}}</h5>
                         </div>
-                        <div class="col-sm-3">
-
+                        <div class="col-md-3">
                             <button class="btn" ng-click="estadonovo()">+</button>
                         </div>
 
@@ -24,7 +23,7 @@
                     <br>
 
 
-                    <div class="row">
+                    <div class="row" style="height: 60%;">
                         <div style="width: 100%; height: 100%; overflow-y: scroll;">
                             <!--<div class="panel panel-default" style="background-color:#ffffff;overflow-y: auto; height:50%;">-->
 
@@ -53,20 +52,21 @@
 
 
         <!--mostrar dados-->
-        <div ng-show="estado=='normal'" class="col-sm-9">
+        <div ng-show="estado=='normal'" class="col-sm-9" style="margin-bottom: 90px;">
             <div class="row soAli ">
-                <div class="col-sm-1">
-                    <button class="btn btn-link" ng-click=showEdit(atual)>Edit</button>
-                </div>
-                <div class="col-sm-10">
+                
+                <div class=" col-md-9 col-sm-7 ">
 
                 </div>
+                <div class="col-md-1 col-sm-2">
+                    <button class="btn btn-primary" ng-click=showEdit(atual)>Editar</button>
+                </div>
 
-                <div class="col-sm-1">
-                    <button class="btn btn-link" ng-click="remove(atual)">Deletar</button>
+                <div class="col-md-1 col-sm-2">
+                    <button class="btn btn-danger" ng-click="remove(atual)">Deletar</button>
                     
                     
-                   
+
                 </div>
 
 
@@ -74,82 +74,60 @@
 
             <!--nome-->
             <div class="row espaco">
-                <div class="col-sm-1">
-                </div>
-
-                <div class="col-sm-6">
-                    <h1>{{atual.nome}}</h1>
-
+                <div class="col-md-12">
+                    <h1 style="float: right;">{{atual.nome}}</h1>
                 </div>
             </div>
+            <hr>
 
 
             <!--email-->
             <div class="row espaco">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-11">
-                    <h5 class="campos">Email</h5>
-                    <t></t>
-                    <p style="display:inline;"> {{atual.email}}</p>
+                <div class="col-md-12">
+                    <h5 class="campos"><b>Email: </b></h5>
+                    <p style="display:inline;">{{atual.email}}</p>
                 </div>
-
-
             </div>
+            <hr>
 
             <!--Telefone-->
             <div class="row espaco">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-1">
-                    <h5 style="color:#92929b;">Telefone</h5>
+                <div class="col-md-12">
+                    <h5 style="color:#92929b;"><b>Telefone</b></h5>
+                    <hr>
                 </div>
-                <br>
-                <div class="col-sm-10">
-                    <div class="row espaco">
-
-                        <h5 class="campos">Fixo </h5>
+                <div class="col-md-12">
+                    <div class="">
+                        <h5 class="campos"><b>Fixo: </b></h5>
                         <p style="display:inline;">{{atual.telefone.fixo}}</p>
                     </div>
-                    <div class="row espaco">
-                        <h5 class="campos">Celular </h5>
+                    <div class="espaco">
+                        <h5 class="campos"><b>Celular: </b></h5>
                         <p style="display:inline;">{{atual.telefone.celular}}</p>
-
                     </div>
-
-
                 </div>
-
-
             </div>
+            <hr>
 
             <!--endereco-->
             <div class="row espaco">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-11">
-                    <h5 class="campos">Endereço</h5>
+                <div class="col-md-12">
+                    <h5 class="campos"><b>Endereço: </b></h5>
                     <t></t>
                     <p style="display:inline;">{{atual.endereco}}</p>
                 </div>
-
-
             </div>
+            <hr>
 
 
             <!--obs-->
             <div class="row espaco">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-6">
-                    <h5 class="campos">Observação</h5>
+                <div class="col-md-12">
+                    <h5 class="campos"><b>Observação: </b></h5>
                     <t></t>
                     <p style="display:inline;">{{atual.obs}}</p>
                 </div>
-                <div class="col-sm-5">
-
-                </div>
-
-
             </div>
-
-
         </div>
 
 
@@ -158,63 +136,54 @@
         <!--atualizar dados-->
         <div ng-show="estado=='edit'" class="col-sm-9">
             <div class="row soAli ">
-                <button class="btn btn-link" ng-click=patch()>Salvar</button>
-
-                <button class="btn btn-link" ng-click=reset()>Cancelar</button>
-
+                <div class="col-md-9 col-sm-9"></div>
+                <div class="col-md-1 col-sm-1">
+                <button class="btn btn-success" ng-click=patch()>Salvar</button>
+                </div>
+                
+                <div class="col-md-1 col-sm-1">
+                <button class="btn btn-danger" ng-click=reset()>Cancelar</button>
+                </div>
             </div>
             <!--nome-->
             <div class="row espaco">
-                <div class="col-sm-1">
-                </div>
-
-                <div class="col-sm-9">
+                <div class="col-md-12">
                     <label for="nome">Nome:</label>
                     <input id="nome" class="form-control input-sm text-area tam" ng-model="contatos.selected.nome">
-
                 </div>
             </div>
 
 
             <!--email-->
             <div class="row espaco">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-9">
+                <div class="col-md-12">
                     <label for="email">Email:</label>
                     <input id="email" class="form-control input-sm tam " ng-model="contatos.selected.email">
                 </div>
-
-
             </div>
 
             <!--Telefone-->
             <div class="row espaco">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-1">
-                    <h5 style="color:#00000;">Telefone</h5>
+                <div class="col-md-12">
+                    <h5 style="color:#00000;"><b>Telefone</b></h5>
                 </div>
                 <br>
-                <div class="col-sm-8">
-                    <div class="row espaco">
+                <div class="col-md-12">
+                    <div class="">
                         <label for="fixo">Fixo:</label>
                         <input id="fixo" class="form-control input-sm tam" ng-model="contatos.selected.telefone.fixo">
                     </div>
-                    <div class="row espaco">
+                    <div class="espaco">
                         <label for="celular">Celular:</label>
                         <input id="ceular" class="form-control input-sm tam" ng-model="contatos.selected.telefone.celular">
 
                     </div>
-
-
                 </div>
-
-
             </div>
 
             <!--endereco-->
             <div class="row espaco">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-9">
+                <div class="col-md-12">
                     <label for="endereco">Endereco:</label>
                     <input id="endereco" class="form-control input-sm tam" ng-model="contatos.selected.endereco">
                 </div>
@@ -225,17 +194,11 @@
 
             <!--obs-->
             <div class="row espaco">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-9">
+                <div class="col-md-12">
                     <label for="obs">Observação</label>
                     <textarea row="5" id="obs" class="form-control input-sm tam" ng-model="contatos.selected.obs"></textarea>
                 </div>
-
-
-
             </div>
-
-
         </div>
 
 
@@ -244,32 +207,34 @@
 
 
         <!--novo contato-->
-        <div ng-show="estado=='novo'" class="col-sm-9">
+        <div ng-show="estado=='novo'" class="col-sm-9 col-md-9">
             <form class="form" ng-submit="addContato()" id="formContato">
                 <div class="row soAli ">
-                    <button class="btn btn-link" type="submit" ng-disabled="disabled">Salvar</button>
-
-                    <button class="btn btn-link" ng-click=reset()>Cancelar</button>
+                    <div class="col-md-8 col-sm-8"></div>
+                    <div class="col-md-1 col-sm-1"> 
+                    <button class="btn btn-success" type="submit" ng-disabled="disabled">Salvar</button>
+                    </div>
+                    
+                    <div class="col-md-1 col-sm-1"> </div>
+                    
+                    <div class="col-md-1 col-sm-1"> 
+                    <button class="btn btn-danger" ng-click=reset()>Cancelar</button>
+                    </div>
 
                 </div>
                 <div class="row alert alert-danger" ng-show="addErr">{{addErr}} </div>
                 <!--nome-->
                 <div class="row espaco">
-                    <div class="col-sm-1">
-                    </div>
-
-                    <div class="col-sm-9">
+                    <div class="col-md-12">
                         <label for="nome">Nome:</label>
                         <input type="text" id="nome" class="form-control input-sm text-area tam" ng-model="novo.nome" required>
-
                     </div>
                 </div>
 
 
                 <!--email-->
                 <div class="row espaco">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-9">
+                    <div class="col-md-12">
                         <label for="email">Email:</label>
                         <input type="email" id="email" class="form-control input-sm tam " ng-model="novo.email">
                     </div>
@@ -279,50 +244,36 @@
 
                 <!--Telefone-->
                 <div class="row espaco">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-1">
-                        <h5 style="color:#00000;">Telefone</h5>
+                    <div class="col-md-12">
+                        <h5 style="color:#00000;"><b>Telefone</b></h5>
                     </div>
-                    <br>
-                    <div class="col-sm-8">
-                        <div class="row espaco">
+                    <div class="col-md-12">
+                        <div class="">
                             <label for="fixo">Fixo:</label>
                             <input pattern="[0-9()]*" id="fixo" class="form-control input-sm tam" ng-model="novo.fixo">
                         </div>
-                        <div class="row espaco">
+                        <div class="espaco">
                             <label for="celular">Celular:</label>
                             <input pattern="[0-9()]*" id="ceular" class="form-control input-sm tam" ng-model="novo.celular">
-
                         </div>
-
-
                     </div>
-
-
                 </div>
 
                 <!--endereco-->
                 <div class="row espaco">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-9">
-                        <label for="endereco">Endereco:</label>
+                    <div class="col-md-12">
+                        <label for="endereco">Endereço:</label>
                         <input type="text" id="endereco" class="form-control input-sm tam" ng-model="novo.endereco">
                     </div>
-
-
                 </div>
 
 
                 <!--obs-->
                 <div class="row espaco">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-9">
+                    <div class="col-md-12">
                         <label for="obs">Observação</label>
                         <textarea type="text" row="5" id="obs" class="form-control input-sm tam" ng-model="novo.obs"></textarea>
                     </div>
-
-
-
                 </div>
 
             </form>
@@ -331,5 +282,3 @@
 
 
     </div>
-
-</div>

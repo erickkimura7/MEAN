@@ -86,11 +86,11 @@ footer {
 
 .linhadomeio {
     
-    border-right: 1px solid #aaaaaa;
+   box-shadow: 4px 0px 8px #f7f5f5;
 }
 
 .soAli {
-    border-bottom: 1px solid #cbd8ed;
+    border-bottom: 1px solid #f7f5f5;
 }
 
 .espaco {

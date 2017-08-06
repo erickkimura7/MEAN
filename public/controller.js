@@ -94,14 +94,14 @@ angular.module('myApp').controller('Contatos', ['$scope', '$location', 'AuthServ
     $scope.ultimoSel = "";
 
     AuthService.getContatos(function(res) {
-      console.log("pa", res);
+      // console.log("pa", res);
       $scope.contatos = res;
       $scope.gam();
     });
     $scope.gam = function() {
       AuthService.getUser(function(usuario) {
         if (usuario) {
-          console.log("aksjdkajsdkjsdkjask: ", usuario);
+          // console.log("aksjdkajsdkjsdkjask: ", usuario);
           var no = usuario.usuario;
           $scope.usuario = toTitleCase(no);
 
@@ -120,13 +120,13 @@ angular.module('myApp').controller('Contatos', ['$scope', '$location', 'AuthServ
     // atualizar 
     $scope.atualizar = function() {
       AuthService.getContatos(function(res) {
-        console.log("atualizar: ", res);
+        // console.log("atualizar: ", res);
         $scope.contatos = res;
       });
     };
     $scope.atualizar1 = function(callback) {
       AuthService.getContatos(function(res) {
-        console.log("atualizar: ", res);
+        // console.log("atualizar: ", res);
         $scope.contatos = res;
         callback();
       });
@@ -136,7 +136,7 @@ angular.module('myApp').controller('Contatos', ['$scope', '$location', 'AuthServ
     $scope.normal = function() {
       $scope.addErr = null;
       $scope.estado = "normal";
-      console.log("Estado : Normal");
+      // console.log("Estado : Normal");
     };
 
 
@@ -144,7 +144,7 @@ angular.module('myApp').controller('Contatos', ['$scope', '$location', 'AuthServ
     $scope.estadonovo = function() {
        $scope.addErr = null;
       $scope.estado = "novo";
-      console.log("estado : novo");
+      // console.log("estado : novo");
     };
     
     $scope.confirm = function(){
@@ -153,7 +153,7 @@ angular.module('myApp').controller('Contatos', ['$scope', '$location', 'AuthServ
 
     // implementar add contato
     $scope.addContato = function() {
-      console.log("aaaui");
+      // console.log("aaaui");
       if (typeof $scope.novo.fixo == undefined) {
         $scope.novo.telefone.fixo = "";
       }
@@ -169,7 +169,7 @@ angular.module('myApp').controller('Contatos', ['$scope', '$location', 'AuthServ
       if (typeof $scope.novo.obs == undefined) {
         $scope.novo.obs = "";
       }
-      console.log("aui");
+      // console.log("aui");
       var dados = {
         nome: $scope.novo.nome,
         email: $scope.novo.email,
@@ -180,9 +180,9 @@ angular.module('myApp').controller('Contatos', ['$scope', '$location', 'AuthServ
         },
         obs: $scope.novo.obs
       }
-      console.log(dados);
+      // console.log(dados);
       AuthService.addContato(dados, function(res) {
-        console.log("err:", res);
+        // console.log("err:", res);
         if (res) {
           $scope.addErr = res;
         }
@@ -199,7 +199,7 @@ angular.module('myApp').controller('Contatos', ['$scope', '$location', 'AuthServ
     //show contatos
 
     $scope.show = function(id) {
-      console.log("ola :", id);
+      // console.log("ola :", id);
       $scope.id = id;
       $scope.atual = id;
       $scope.normal();
@@ -220,22 +220,37 @@ angular.module('myApp').controller('Contatos', ['$scope', '$location', 'AuthServ
       $scope.contatos.selected = {};
       $scope.active = null;
       $scope.normal();
-      console.log("reset");
+      // console.log("reset");
     };
 
     // implementar remove contato
     $scope.remove = function(id) {
       var nome = id.nome;
-      console.log("Nome: ", nome);
+      // console.log("Nome: ", nome);
       AuthService.removeContatos(nome, function(x) {
-        console.log("Remove : ", x);
+        // console.log("Remove : ", x);
         $scope.atualizar();
       });
     };
 
     // implementar atualiza contato
     $scope.patch = function() {
-      console.log("Verificar : ", $scope.nomeatual);
+      // console.log("Verificar : ", $scope.nomeatual);
+      if (typeof $scope.contatos.selected.telefone.fixo == undefined) {
+        $scope.contatos.selected.telefone.fixo = "";
+      }
+      if (typeof $scope.contatos.selected.telefone.celular == undefined) {
+        $scope.contatos.selected.telefone.celular = "";
+      }
+      if (typeof $scope.contatos.selected.email == undefined) {
+        $scope.contatos.selected.email = "";
+      }
+      if (typeof $scope.contatos.selected.endereco == undefined) {
+        $scope.contatos.selected.endereco = "";
+      }
+      if (typeof $scope.contatos.selected.obs == undefined) {
+        $scope.contatos.selected.obs = "";
+      }
       var data = {
         contato: $scope.nomeatual,
         nome: $scope.contatos.selected.nome,
@@ -262,10 +277,10 @@ angular.module('myApp').controller('Contatos', ['$scope', '$location', 'AuthServ
           },
 
         };
-        console.log("ultimo", $scope.ultimoSel);
+        // console.log("ultimo", $scope.ultimoSel);
         $scope.reset();
         $scope.atualizar1(function() {
-          console.log("show: ", teste);
+          // console.log("show: ", teste);
           $scope.atual = teste;
           $scope.show(teste);
         });

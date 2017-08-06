@@ -14,13 +14,84 @@
     <script src="./app.js"></script>
     <script src="./services.js"></script>
     <script src="./controller.js"></script>
+    <style type="text/css">
+        
+        .titulo-topo{
+            color: #eae9e9;
+            text-align:center;
+            text-shadow: 0 0 15px #b9b0b0;
+            transition: 0.5s;
+            cursor: default;
+            font-size: 3em !important;
+            font-family: Lato;
+            font-weight: 300 !important;
+        }
+        
+        .titulo-topo:hover {
+            transition: 0.5s;
+            text-shadow: 0 0 32px #fdfdfd;
+            color: #fff;
+        }
+        
+        .jumbotron.topo{
+            border-radius: 0 0 10px 10px !important;
+            background-color: #222222 !important;
+            padding: 0px;
+            height: 100px;
+            display: flex;
+            justify-content:center;
+            align-content: center;
+        }
+        
+        p.titulo-topo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .rodape-principal{
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+        
+        
+        .rodape{
+              background-color: #222;
+            color: #9d9d9d;
+            text-align: center;
+            font-size: 1em;
+            font-family: Lato;
+            font-weight: 400;
+            position: fixed;
+            bottom: 0;
+            border-radius: 10px 10px 0 0;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .navbar-inverse .navbar-nav>li>a:hover{
+                color: #fff;
+    text-shadow: 0px 0px 21px #fff;
+    transition: 0.5s;
+    text-align: center;
+        }
+        
+        .navbar-inverse .navbar-nav>li>a{
+            transition: 1s;
+        }
+        
+    </style>
     
 </head>
    
 <body>
-    <div  class="container" >
-        <div class="jumbotron">
-            <p style="color:#FFFFFF;font-size: 29px;padding-top: 20px;padding-left: 20px;">WebSite MEAN</p>
+    <div class="container">
+        <div class="jumbotron topo">
+            <!--<p style="color:#FFFFFF;font-size: 29px;padding-top: 20px;padding-left: 20px;">WebSite MEAN</p>-->
+            <p class="titulo-topo">WebSite MEAN</p>
         </div>
         
         
@@ -28,7 +99,7 @@
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav ">
                 <li><a href="#/">Home</a></li>
                 <li><a ng-hide="logado" href="#/contatos">Contatos</a></li>
                 <li><a href="#/sobre">Sobre</a></li>
@@ -41,14 +112,16 @@
             </ul>
           </div>
         </nav>
-        <div class="container">
+        <div class="container" style="width: 100% !important;margin-bottom: 10px;height: 400px;">
             <div >
                 <div ng-view="myApp"></div>
             </div>
         </div>
-        <footer class="container">
-  <p>Footer Text</p>
-</footer>
+        <div class="container-fluid rodape-principal">
+            <div class="container rodape">
+              <p>&copy; 2017 WebSite Mean</p>
+          </div
+        </div>
     </div>
     
      <script>
