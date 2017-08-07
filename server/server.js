@@ -102,7 +102,7 @@ function isAuth1(req,res,next){
         });
     } else{
 
-        res.status(401).json({
+        res.json({
             err:"Erro"
         });
     }
@@ -116,7 +116,7 @@ function isAuth(req,res,next){
         next();
     } else{
 
-        res.status(401).json({
+        res.json({
             err:"Nao logado"
         });
     }
